@@ -10,6 +10,7 @@
             "name": "ValveOpenDelay", 
             "caption": "time to open", 
             "suffix": "seconds"
+        }
         
     ],
     "actions": [],
