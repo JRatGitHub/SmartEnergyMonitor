@@ -5,11 +5,10 @@
             "label": "Enter ip of ZTAZ server:" 
         },
 
-        {
-            "type": "NumberSpinner",
-            "name": "ValveOpenDelay", 
-            "caption": "time to open", 
-            "suffix": "seconds"
+        { 
+            "type": "ValidationTextBox", 
+            "name": "IPAddress", 
+            "caption": "Host" 
         }
         
     ],
