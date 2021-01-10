@@ -1,0 +1,12 @@
+{
+    "id": "{9F59ED47-0502-2D8E-0C33-A8A20F123F89}",
+    "name": "P1monitor",
+    "type": 3,
+    "vendor": "",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "MON",
+    "url": ""
+}
