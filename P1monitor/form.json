@@ -1,5 +1,17 @@
 {
-    "elements": [],
+    "elements": [
+        {   
+            "type": "Label",
+            "label": "Enter ip of ZTAZ server:" 
+        },
+
+        {
+            "type": "NumberSpinner",
+            "name": "ValveOpenDelay", 
+            "caption": "time to open", 
+            "suffix": "seconds"
+        
+    ],
     "actions": [],
     "status": []
 }
