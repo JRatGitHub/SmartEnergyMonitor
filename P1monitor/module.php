@@ -5,6 +5,9 @@
 		{
 			//Never delete this line!
 			parent::Create();
+
+			 //Properties
+			 $this->RegisterPropertyString ('Host');
 		}
 
 		public function Destroy()

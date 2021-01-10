@@ -2,7 +2,7 @@
     "elements": [
         {   
             "type": "Label",
-            "label": "Enter ip of ZTAZ server:" 
+            "label": "Enter ip of ztatz server:" 
         },
 
         { 
