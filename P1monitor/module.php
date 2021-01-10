@@ -7,7 +7,7 @@
 			parent::Create();
 
 			 //Properties
-			 $this->RegisterPropertyString ('Host');
+			 $this->RegisterPropertyString ('IPAddress');
 		}
 
 		public function Destroy()
