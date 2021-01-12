@@ -8,6 +8,9 @@
 
 			 //Properties
 			 $this->RegisterPropertyString ('IPAddress');
+			
+			 //Variables
+			 $EUsage = $this->RegisterVariableFloat('electricity usage',0);
 		}
 
 		public function Destroy()
