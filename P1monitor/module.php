@@ -7,7 +7,7 @@
 			parent::Create();
 
 			 //Properties
-			 $this->RegisterPropertyString ('IPAddress');
+			 $this->RegisterPropertyString ('IPAddress','192.168.89.134');
 			
 			 //Variables
 			 $EUsage = $this->RegisterVariableFloat('electricity usage',0);
