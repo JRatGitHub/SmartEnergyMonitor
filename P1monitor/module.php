@@ -65,12 +65,12 @@
 			$url = $this->ReadPropertyString('IPAddress');
 			$url = 'http://' .$url .'/api/v1/smartmeter?limit=1';
 			print($url);
-			//$data = file_get_contents($url); // put the contents of the file into a variable
+			$data = file_get_contents($url); // put the contents of the file into a variable
 			//$characters = json_decode($data); // decode the JSON feed
-//$wizards = json_decode($data, true);
+			$wizards = json_decode($data, true);
 			//print_r($characters);
 			// actueel verbruik
-			//SetValueFloat($this->GetIDForIdent('CONSUMPTION_W'),$wizards['0']['8']);
+			SetValueFloat($this->GetIDForIdent('CONSUMPTION_W'),$wizards['0']['8']);
 		}
 
 	}
