@@ -44,17 +44,12 @@
 
 		public function UpdateProfil()
 		{
-			//$alarm = $this->ReadPropertyInteger("P_Alarm");
-			//$warn = $this->ReadPropertyInteger("P_Warn");
-	
-	
 			if (!IPS_VariableProfileExists("P1monitor.Watt")) {
 				IPS_CreateVariableProfile("P1monitor.Watt", 2);
 				IPS_SetVariableProfileDigits("P1monitor.Watt", 0);
 				IPS_SetVariableProfileText("P1monitor.Watt",""," W");
 				IPS_SetVariableProfileIcon("P1monitor.Watt","Electricity");
 			}
-
 			if (!IPS_VariableProfileExists("P1monitor.ProductionKWH")) {
 				IPS_CreateVariableProfile("P1monitor.ProductionKWH", 2);
 				IPS_SetVariableProfileDigits("P1monitor.ProductionKWH", 3);
