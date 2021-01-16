@@ -64,7 +64,7 @@
 		{
 			$url = $this->ReadPropertyString('IPAddress');
 			$url = 'http:// .'$url .'/api/v1/smartmeter?limit=1';
-			print_r($url);
+			print($url);
 			//$data = file_get_contents($url); // put the contents of the file into a variable
 			//$characters = json_decode($data); // decode the JSON feed
 //$wizards = json_decode($data, true);
