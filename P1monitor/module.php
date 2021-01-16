@@ -11,6 +11,8 @@
 			
 			 //Variables
 			 $EUsage = $this->RegisterVariableFloat('electricityusage','Electricityusage','~Electricity');
+
+			 $CONSUMPTION_W = $this->RegisterAttributeFloat('CONSUMPTION_W','Comsuption','~Watt.3680');
 		}
 
 		public function Destroy()
