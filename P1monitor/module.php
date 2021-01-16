@@ -21,7 +21,7 @@
 			 $CONSUMPTION_COST_GAS = $this->RegisterVariableFloat('CONSUMPTION_COST_GAS','Kosten gas vandaag','~Euro');
 			 $CONSUMPTION_COST = $this->RegisterVariableFloat('CONSUMPTION_COST','Kosten vandaag','~Euro');
 			
-			 $PRODUCTION_KWH_LOW = $this->RegisterVariableFloat('PRODUCTION_KWH_LOW','Terug geleverd','P1monitor.ProductionKWH');
+			 $PRODUCTION_KWH_LOW = $this->RegisterVariableFloat('PRODUCTION_KWH_LOW','Teruggeleverd','P1monitor.ProductionKWH');
 
 			 $this->RegisterTimer('INTERVAL',10, 'MON_GetData($id)');
 			}
@@ -103,6 +103,7 @@
 			$wizards = json_decode($data, true);
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_W'),$wizards['0']['8']);
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_GAS_M3'),$wizards['0']['10']);
+			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_LOW'),$wizards['0']['5']);
 			
 
 			//$url = $this->ReadPropertyString('IPAddress');
@@ -120,6 +121,8 @@
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST_ELECTRICITY'),$wizards['0']['2'] + $wizards['0']['3'] );
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST_GAS'),$wizards['0']['6']);
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST'),$wizards['0']['2'] + $wizards['0']['3'] + $wizards['0']['6']);
+		
+			//Production
 		}
 
 	}
