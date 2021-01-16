@@ -29,4 +29,15 @@
 			parent::ApplyChanges();
 		}
 
+		public function GetData()
+		{
+			$url = $this->ReadPropertyString('IPAddressHeatRequestID')
+			$data = file_get_contents($url); // put the contents of the file into a variable
+			//$characters = json_decode($data); // decode the JSON feed
+			$wizards = json_decode($data, true);
+			//print_r($characters);
+			// actueel verbruik
+			SetValueFloat($this->GetIDForIdent('CONSUMPTION_W'),$wizards['0']['8']);
+		}
+
 	}
