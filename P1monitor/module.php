@@ -59,7 +59,7 @@
 				IPS_CreateVariableProfile("P1monitor.ProductionKWH", 2);
 				IPS_SetVariableProfileDigits("P1monitor.ProductionKWH", 0);
 				IPS_SetVariableProfileText("P1monitor.ProductionKWH",""," kWh");
-				IPS_SetVariableProfileIcon("P1monitor.ProductionKWH","EnergyProduction");
+				IPS_SetVariableProfileIcon("P1monitor.ProductionKWH","EnergySolar");
 			}
 		}
 
