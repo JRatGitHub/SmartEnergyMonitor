@@ -10,13 +10,16 @@
 			 $this->RegisterPropertyString ('IPAddress','192.168.89.134');
 			
 			 //Variables
-			 $EUsage = $this->RegisterVariableFloat('electricityusage','Electricityusage','~Electricity');
-
 			 $CONSUMPTION_W = $this->RegisterVariableFloat('CONSUMPTION_W','Consumption','~Watt.14490');
 			 $CONSUMPTION_GAS_M3 = $this->RegisterVariableFloat('CONSUMPTION_GAS_M3','Consumption Gas','~Gas');
 
 			 $ROOM_TEMPERATURE_IN = $this->RegisterVariableFloat('ROOM_TEMPERATURE_IN','Temperature aanvoer','~Temperature');
 			 $ROOM_TEMPERATURE_OUT = $this->RegisterVariableFloat('ROOM_TEMPERATURE_OUT','Temperature retour','~Temperature');
+			 
+			 $CONSUMPTION_COST_ELECTRICITY = $this->RegisterVariableFloat('CONSUMPTION_COST_ELECTRICITY','Kosten elektriciteit vandaag','~Euro');
+			 $CONSUMPTION_COST_GAS = $this->RegisterVariableFloat('CONSUMPTION_COST_GAS','Kosten gas vandaag','~Euro');
+			 $CONSUMPTION_COST = $this->RegisterVariableFloat('CONSUMPTION_COST','Kosten vandaag','~Euro');
+			
 			 $this->RegisterTimer('INTERVAL',10, 'MON_GetData($id)');
 			}
 
@@ -66,23 +69,30 @@
 		{
 			$url = $this->ReadPropertyString('IPAddress');
 			$url = 'http://' .$url .'/api/v1/smartmeter?limit=1';
-			print($url);
+		//	print($url);
 			$data = file_get_contents($url); // put the contents of the file into a variable
-			//$characters = json_decode($data); // decode the JSON feed
 			$wizards = json_decode($data, true);
-			//print_r($characters);
-			// actueel verbruik
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_W'),$wizards['0']['8']);
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_GAS_M3'),$wizards['0']['10']);
 			
+
 			$url = $this->ReadPropertyString('IPAddress');
 			$url = 'http://' .$url .'/api/v1/indoor/temperature?limit=1';
-			print($url);
+		//	print($url);
 			$data = file_get_contents($url); // put the contents of the file into a variable
 			$wizards = json_decode($data, true);
 			
 			SetValueFloat($this->GetIDForIdent('ROOM_TEMPERATURE_IN'),$wizards['0']['3']);
 			SetValueFloat($this->GetIDForIdent('ROOM_TEMPERATURE_OUT'),$wizards['0']['7']);
+			
+			//financial
+			//$url = $this->ReadPropertyString('IPAddress');
+			$url = 'http://' $this->ReadPropertyString('IPAddress'); .'/api/v1/financial/day?limit=1';
+			//print($url);
+			//$data = file_get_contents($url); // put the contents of the file into a variable
+			$wizards = json_decode($file_get_contents($url), true);
+			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST_ELECTRICITY'),$wizards['0']['2'] + $wizards['0']['3'] );
+			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST_GAS'),$wizards['0']['6']);
 
 		}
 
