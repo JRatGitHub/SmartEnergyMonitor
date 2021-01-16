@@ -62,7 +62,7 @@
 
 		public function GetData()
 		{
-			$url = $this->ReadPropertyString('IPAddressHeatRequestID');
+			$url = $this->ReadPropertyString('IPAddress');
 			$url = $url + '/api/v1/smartmeter?limit=1';
 			print_r($url);
 			$data = file_get_contents($url); // put the contents of the file into a variable
