@@ -10,7 +10,7 @@
 			 $this->RegisterPropertyString ('IPAddress','192.168.89.134');
 			
 			 //Variables
-			 if (!IPS_VariableProfileExists("P1monitor.Watt")) $this->UpdateProfil();
+			 if (!IPS_VariableProfileExists("P1monitor.Watt") || !IPS_VariableProfileExists("P1monitor.ProductionKWH")) $this->UpdateProfil();
 			 $CONSUMPTION_W = $this->RegisterVariableFloat('CONSUMPTION_W','Consumption','P1monitor.Watt');
 			 $CONSUMPTION_GAS_M3 = $this->RegisterVariableFloat('CONSUMPTION_GAS_M3','Consumption Gas','~Gas');
 
@@ -21,6 +21,8 @@
 			 $CONSUMPTION_COST_GAS = $this->RegisterVariableFloat('CONSUMPTION_COST_GAS','Kosten gas vandaag','~Euro');
 			 $CONSUMPTION_COST = $this->RegisterVariableFloat('CONSUMPTION_COST','Kosten vandaag','~Euro');
 			
+			 $PRODUCTION_KWH_LOW = $this->RegisterVariableFloat('PRODUCTION_KWH_LOW','Terug geleverd','P1monitor.ProductionKWH');
+
 			 $this->RegisterTimer('INTERVAL',10, 'MON_GetData($id)');
 			}
 
@@ -52,7 +54,15 @@
 				IPS_SetVariableProfileText("P1monitor.Watt",""," W");
 				IPS_SetVariableProfileIcon("P1monitor.Watt","Electricity");
 			}
+
+			if (!IPS_VariableProfileExists("P1monitor.ProductionKWH")) {
+				IPS_CreateVariableProfile("P1monitor.ProductionKWH", 2);
+				IPS_SetVariableProfileDigits("P1monitor.ProductionKWH", 0);
+				IPS_SetVariableProfileText("P1monitor.ProductionKWH",""," kWh");
+				IPS_SetVariableProfileIcon("P1monitor.ProductionKWH","EnergyProduction");
+			}
 		}
+
 
 
 		protected function RegisterTimer($ident, $interval, $script) {
