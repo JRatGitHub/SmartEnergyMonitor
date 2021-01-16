@@ -87,7 +87,7 @@
 			
 			//financial
 			//$url = $this->ReadPropertyString('IPAddress');
-			$url = 'http://' $this->ReadPropertyString('IPAddress'); .'/api/v1/financial/day?limit=1';
+			$url = 'http://' $this->ReadPropertyString('IPAddress') .'/api/v1/financial/day?limit=1';
 			print($url);
 			$data = file_get_contents($url); // put the contents of the file into a variable
 			$wizards = json_decode($data, true);
