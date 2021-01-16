@@ -34,7 +34,11 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
+
+			
 		}
+
+
 
 		protected function RegisterTimer($ident, $interval, $script) {
 			$id = @IPS_GetObjectIDByIdent($ident, $this->InstanceID);
@@ -86,9 +90,8 @@
 			SetValueFloat($this->GetIDForIdent('ROOM_TEMPERATURE_OUT'),$wizards['0']['7']);
 			
 			//financial
-			//$url = $this->ReadPropertyString('IPAddress');
 			$url = 'http://' .$this->ReadPropertyString('IPAddress') .'/api/v1/financial/day?limit=1';
-			print($url);
+			//print($url);
 			$data = file_get_contents($url); // put the contents of the file into a variable
 			$wizards = json_decode($data, true);
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST_ELECTRICITY'),$wizards['0']['2'] + $wizards['0']['3'] );
