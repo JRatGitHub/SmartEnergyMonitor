@@ -10,7 +10,8 @@
 			 $this->RegisterPropertyString ('IPAddress','192.168.89.134');
 			
 			 //Variables
-			 $CONSUMPTION_W = $this->RegisterVariableFloat('CONSUMPTION_W','Consumption','~Watt.14490');
+			 if (!IPS_VariableProfileExists("P1monitor.Watt")) $this->UpdateProfil();
+			 $CONSUMPTION_W = $this->RegisterVariableFloat('CONSUMPTION_W','Consumption','P1monitor.Watt');
 			 $CONSUMPTION_GAS_M3 = $this->RegisterVariableFloat('CONSUMPTION_GAS_M3','Consumption Gas','~Gas');
 
 			 $ROOM_TEMPERATURE_IN = $this->RegisterVariableFloat('ROOM_TEMPERATURE_IN','Temperature aanvoer','~Temperature');
@@ -38,6 +39,20 @@
 
 		}
 
+
+		public function UpdateProfil()
+		{
+			//$alarm = $this->ReadPropertyInteger("P_Alarm");
+			//$warn = $this->ReadPropertyInteger("P_Warn");
+	
+	
+			if (!IPS_VariableProfileExists("P1monitor.Watt")) {
+				IPS_CreateVariableProfile("P1monitor.Watt", 2);
+				IPS_SetVariableProfileDigits("P1monitor.Watt", 0);
+				IPS_SetVariableProfileText("P1monitor.Watt",""," W");
+				IPS_SetVariableProfileIcon("P1monitor.Watt","Electricity");
+			}
+		}
 
 
 		protected function RegisterTimer($ident, $interval, $script) {
@@ -80,9 +95,8 @@
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_GAS_M3'),$wizards['0']['10']);
 			
 
-			$url = $this->ReadPropertyString('IPAddress');
-			$url = 'http://' .$url .'/api/v1/indoor/temperature?limit=1';
-		//	print($url);
+			//$url = $this->ReadPropertyString('IPAddress');
+			$url = 'http://' .$this->ReadPropertyString('IPAddress') .'/api/v1/indoor/temperature?limit=1';
 			$data = file_get_contents($url); // put the contents of the file into a variable
 			$wizards = json_decode($data, true);
 			
