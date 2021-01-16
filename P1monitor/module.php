@@ -35,7 +35,7 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 
-			
+
 		}
 
 
@@ -91,12 +91,11 @@
 			
 			//financial
 			$url = 'http://' .$this->ReadPropertyString('IPAddress') .'/api/v1/financial/day?limit=1';
-			//print($url);
-			$data = file_get_contents($url); // put the contents of the file into a variable
+			$data = file_get_contents($url);
 			$wizards = json_decode($data, true);
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST_ELECTRICITY'),$wizards['0']['2'] + $wizards['0']['3'] );
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST_GAS'),$wizards['0']['6']);
-
+			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST'),$wizards['0']['2'] + $wizards['0']['3'] + $wizards['0']['6']);
 		}
 
 	}
