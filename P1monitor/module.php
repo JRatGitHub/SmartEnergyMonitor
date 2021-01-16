@@ -89,8 +89,8 @@
 			//$url = $this->ReadPropertyString('IPAddress');
 			$url = 'http://' $this->ReadPropertyString('IPAddress'); .'/api/v1/financial/day?limit=1';
 			//print($url);
-			//$data = file_get_contents($url); // put the contents of the file into a variable
-			$wizards = json_decode(file_get_contents($url), true);
+			$data = file_get_contents($url); // put the contents of the file into a variable
+			$wizards = json_decode($data, true);
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST_ELECTRICITY'),$wizards['0']['2'] + $wizards['0']['3'] );
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST_GAS'),$wizards['0']['6']);
 
