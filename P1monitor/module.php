@@ -15,7 +15,7 @@
 			 $CONSUMPTION_W = $this->RegisterVariableFloat('CONSUMPTION_W','Consumption','~Watt.14490');
 			 $CONSUMPTION_GAS_M3 = $this->RegisterVariableFloat('CONSUMPTION_GAS_M3','Consumption Gas','~Gas');
 
-			 $this->RegisterTimer('INTERVAL',2000, 'MON_GetData($id)');
+			 $this->RegisterTimer('INTERVAL',10, 'MON_GetData($id)');
 			}
 
 
