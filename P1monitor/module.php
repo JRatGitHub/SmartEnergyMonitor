@@ -15,6 +15,8 @@
 			 $CONSUMPTION_W = $this->RegisterVariableFloat('CONSUMPTION_W','Consumption','~Watt.14490');
 			 $CONSUMPTION_GAS_M3 = $this->RegisterVariableFloat('CONSUMPTION_GAS_M3','Consumption Gas','~Gas');
 
+			 $ROOM_TEMPERATURE_IN = $this->RegisterVariableFloat('ROOM_TEMPERATURE_IN','Temperature aanvoer','~Temperature');
+			 $ROOM_TEMPERATURE_OUT = $this->RegisterVariableFloat('ROOM_TEMPERATURE_OUT','Temperature retour','~Temperature');
 			 $this->RegisterTimer('INTERVAL',10, 'MON_GetData($id)');
 			}
 
@@ -72,6 +74,16 @@
 			// actueel verbruik
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_W'),$wizards['0']['8']);
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_GAS_M3'),$wizards['0']['10']);
+			
+			$url = $this->ReadPropertyString('IPAddress');
+			$url = 'http://' .$url .'/api/v1/indoor/temperature?limit=1';
+			print($url);
+			$data = file_get_contents($url); // put the contents of the file into a variable
+			$wizards = json_decode($data, true);
+			
+			SetValueFloat($this->GetIDForIdent('ROOM_TEMPERATURE_IN'),$wizards['0']['3']);
+			SetValueFloat($this->GetIDForIdent('ROOM_TEMPERATURE_OUT'),$wizards['0']['7']);
+
 		}
 
 	}
