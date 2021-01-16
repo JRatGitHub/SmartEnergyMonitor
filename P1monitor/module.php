@@ -71,6 +71,7 @@
 			//print_r($characters);
 			// actueel verbruik
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_W'),$wizards['0']['8']);
+			SetValueFloat($this->GetIDForIdent('CONSUMPTION_GAS_M3'),$wizards['0']['10']);
 		}
 
 	}
