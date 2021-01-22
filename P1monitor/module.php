@@ -12,6 +12,7 @@
 			 //Variables
 			 if (!IPS_VariableProfileExists("P1monitor.Watt") || !IPS_VariableProfileExists("P1monitor.ProductionKWH")) $this->UpdateProfil();
 			 $CONSUMPTION_W = $this->RegisterVariableFloat('CONSUMPTION_W','Consumption','P1monitor.Watt');
+			 $PRODUCTION_W = $this->RegisterVariableFloat('PRODUCTION_W','Production','P1monitor.Watt');
 			 $CONSUMPTION_GAS_M3 = $this->RegisterVariableFloat('CONSUMPTION_GAS_M3','Consumption Gas','~Gas');
 
 			 $ROOM_TEMPERATURE_IN = $this->RegisterVariableFloat('ROOM_TEMPERATURE_IN','Temperature aanvoer','~Temperature');
@@ -97,6 +98,7 @@
 			$data = file_get_contents($url); // put the contents of the file into a variable
 			$wizards = json_decode($data, true);
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_W'),$wizards['0']['8']);
+			SetValueFloat($this->GetIDForIdent('PRODUCTION_W'),$wizards['0']['9']);
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_GAS_M3'),$wizards['0']['10']);
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_LOW'),$wizards['0']['5']);
 			
