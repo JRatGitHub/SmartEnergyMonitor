@@ -12,7 +12,8 @@
 
 			//Variables
 			$PRODUCTION_KWH_TODAY = $this->RegisterVariableFloat('PRODUCTION_KWH_TODAY','Produktie vandaag','P1monitor.ProductionKWH');
-			$PRODUCTION_KWH_TOTAL = $this->RegisterVariableFloat('PRODUCTION_KWH_TOTAL','Productie totaal','P1monitor.ProductionKWH');
+			$PRODUCTION_KWH_MONTH = $this->RegisterVariableFloat('PRODUCTION_KWH_MONTH','Produktie maand','P1monitor.ProductionKWH');
+			$PRODUCTION_KWH_TOTAL = $this->RegisterVariableFloat('PRODUCTION_KWH_TOTAL','Produktie totaal','P1monitor.ProductionKWH');
 
 
 			//timers		
@@ -152,8 +153,9 @@
 		if ($continue) {
 			$data = json_decode($result, JSON_PRETTY_PRINT);
 			print_r($data);
-			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_LOW'),$data['powerValue']);
-
+			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_TODAY'),$data['powerValue']);
+			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_MONTH'),$data['monthValue']);
+			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_TOTAL'),$data['totalValue']);
 			$nowpower = (float)str_ireplace('kWh', '', $data['powerValue']);
 			//$todaypower = (float)str_ireplace('kWh', '', $data['todayStr']);
 			$todaypower = (float)str_ireplace('kWh', '', $data['totalStr']);		// 18-04-2020
