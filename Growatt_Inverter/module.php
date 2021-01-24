@@ -148,6 +148,7 @@
 		
 		if ($continue) {
 			$data = json_decode($result, JSON_PRETTY_PRINT);
+			print_r($data);
 			$nowpower = (float)str_ireplace('kWh', '', $data['powerValue']);
 			//$todaypower = (float)str_ireplace('kWh', '', $data['todayStr']);
 			$todaypower = (float)str_ireplace('kWh', '', $data['totalStr']);		// 18-04-2020
