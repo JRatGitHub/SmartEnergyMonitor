@@ -81,7 +81,8 @@
 		//	'userName'	=> USERNAME,
 			'password'	=> $pw
 		);
-
+		print_r($postValues);
+		
 		$curl = curl_init();
 		curl_setopt($curl, CURLOPT_URL, LOGIN_ACTION_URL);						// Set the URL that we want to send our POST request to. In this case, it's the action URL of the login form.
 		curl_setopt($curl, CURLOPT_POST, true);									// Tell cURL that we want to carry out a POST request.
@@ -164,7 +165,7 @@
 protected function lg($msg)   // Can be used to write loglines to separate file or to internal domoticz log. Check settings.php for value.
 {
 //	curl(domoticz.'json.htm?type=command&param=addlogmessage&message='.urlencode('--->> '.$msg));	
-	IPS_LogMessage("Growatt Iverter", $msg);	
+	IPS_LogMessage("Growatt Inverter", $msg);	
 }
 
 
