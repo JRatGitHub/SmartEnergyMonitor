@@ -1,5 +1,23 @@
 {
-    "elements": [],
+    "elements": [
+        {   
+            "type": "Label",
+            "label": "Growatt Inverter:" 
+        },
+
+        { 
+            "type": "ValidationTextBox", 
+            "name": "Username", 
+            "caption": "username" 
+        },
+
+        {
+            "type": "PasswordTextBox",
+            "name": "Password", 
+            "caption": "Password"
+        }
+
+    ],
     "actions": [],
     "status": []
 }
