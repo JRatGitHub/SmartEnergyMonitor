@@ -56,7 +56,7 @@
 			}
 		  }
 
-		function retrieve_growatt_data($command){
+		public function retrieve_growatt_data(){
 		//	define('USERNAME', '*****');																		// The username or email address of the account.
 		//	define('PASSWORD', '*****');// The Password of the account
 			$pw =  md5($this->ReadPropertyString('Password'));					// No Need to double md5
