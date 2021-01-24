@@ -1,0 +1,12 @@
+{
+    "id": "{D16DF193-A58C-1920-8AC7-B2B2E0740C9B}",
+    "name": "Growatt_Inverter",
+    "type": 3,
+    "vendor": "J.R. de Wit",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "GROWATT",
+    "url": ""
+}
