@@ -160,7 +160,7 @@
 }	
 
 
-protected function $this->lg($msg)   // Can be used to write loglines to separate file or to internal domoticz log. Check settings.php for value.
+protected function lg($msg)   // Can be used to write loglines to separate file or to internal domoticz log. Check settings.php for value.
 {
 //	curl(domoticz.'json.htm?type=command&param=addlogmessage&message='.urlencode('--->> '.$msg));	
 	IPS_LogMessage("Growatt Iverter", $msg);	
