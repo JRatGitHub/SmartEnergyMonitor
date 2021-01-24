@@ -13,8 +13,10 @@
 			//Variables
 			$PRODUCTION_KWH_TODAY = $this->RegisterVariableFloat('PRODUCTION_KWH_TODAY','Produktie vandaag','P1monitor.ProductionKWH');
 			$PRODUCTION_KWH_MONTH = $this->RegisterVariableFloat('PRODUCTION_KWH_MONTH','Produktie maand','P1monitor.ProductionKWH');
+			$PRODUCTION_KWH_YEAR = $this->RegisterVariableFloat('PRODUCTION_KWH_YEAR','Produktie jaar','P1monitor.ProductionKWH');
 			$PRODUCTION_KWH_TOTAL = $this->RegisterVariableFloat('PRODUCTION_KWH_TOTAL','Produktie totaal','P1monitor.ProductionKWH');
 
+			$PRODUCTION_WATT = $this->RegisterVariableFloat('PRODUCTION_WATT','Produktie ','P1monitor.Watt');
 			$PROFIT_TODAY = $this->RegisterVariableFloat('PROFIT_TODAY','opbrengst vandaag','~Euro');
 			$PROFIT_MONTH = $this->RegisterVariableFloat('PROFIT_MONTH','opbrengst maand','~Euro');
 			$PROFIT_TOTAL = $this->RegisterVariableFloat('PROFIT_TOTAL','opbrengs totaal','~Euro');
@@ -158,17 +160,19 @@
 			print_r($data);
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_TODAY'),$data['todayValue']);
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_MONTH'),$data['monthValue']);
+			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_YEAR'),$data['yearValue']);
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_TOTAL'),$data['totalValue']);
+			SetValueFloat($this->GetIDForIdent('PRODUCTION_WATT'),$data['powerValue']);
 
 			SetValueFloat($this->GetIDForIdent('PROFIT_TODAY'),str_ireplace('€','',$data['todayProfitStr']));
 			SetValueFloat($this->GetIDForIdent('PROFIT_MONTH'),str_ireplace('€','',$data['monthProfitStr']));
 			SetValueFloat($this->GetIDForIdent('PROFIT_TOTAL'),str_ireplace('€','',$data['totalProfitStr']));
 			
-			$nowpower = (float)str_ireplace('kWh', '', $data['powerValue']);
+		//	$nowpower = (float)str_ireplace('kWh', '', $data['powerValue']);
 			//$todaypower = (float)str_ireplace('kWh', '', $data['todayStr']);
-			$todaypower = (float)str_ireplace('kWh', '', $data['totalStr']);		// 18-04-2020
+		//	$todaypower = (float)str_ireplace('kWh', '', $data['totalStr']);		// 18-04-2020
 			
-			$str=( $nowpower.';'. $todaypower * 1000 );	#times 1000 to convert the 0.1kWh to 100 WattHour and to convert 2.1kWh to 2100 WattHour
+		//	$str=( $nowpower.';'. $todaypower * 1000 );	#times 1000 to convert the 0.1kWh to 100 WattHour and to convert 2.1kWh to 2100 WattHour
 			//$this->lg('Growatt Inverter: '. $nowpower.' for domoticz: '.$str);
 			//ud(DOMOTICZDEVICE,0,$str,'GrowattInverter: Generation updated');
 		}
