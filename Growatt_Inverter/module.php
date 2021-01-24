@@ -160,8 +160,8 @@
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_MONTH'),$data['monthValue']);
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_TOTAL'),$data['totalValue']);
 
-			SetValueFloat($this->GetIDForIdent('PROFIT_TODAY'),$data['todayValue']);
-			SetValueFloat($this->GetIDForIdent('PROFIT_MONTH'),$data['monthValue']);
+			SetValueFloat($this->GetIDForIdent('PROFIT_TODAY'),str_ireplace('€','',$data['todayProfitStr']);
+			SetValueFloat($this->GetIDForIdent('PROFIT_MONTH'),str_ireplace('€','',$data['monthProfitStr']);
 			SetValueFloat($this->GetIDForIdent('PROFIT_TOTAL'),str_ireplace('€','',$data['totalProfitStr']));
 			
 			$nowpower = (float)str_ireplace('kWh', '', $data['powerValue']);
