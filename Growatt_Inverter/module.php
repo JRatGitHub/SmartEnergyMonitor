@@ -15,6 +15,9 @@
 			$PRODUCTION_KWH_MONTH = $this->RegisterVariableFloat('PRODUCTION_KWH_MONTH','Produktie maand','P1monitor.ProductionKWH');
 			$PRODUCTION_KWH_TOTAL = $this->RegisterVariableFloat('PRODUCTION_KWH_TOTAL','Produktie totaal','P1monitor.ProductionKWH');
 
+			$PROFIT_TODAY = $this->RegisterVariableFloat('PROFIT_TODAY','opbrengst vandaag','~Euro');
+			$PROFIT_MONTH = $this->RegisterVariableFloat('PROFIT_MONTH','opbrengst maand','~Euro');
+			$PROFIT_TOTAL = $this->RegisterVariableFloat('PROFIT_TOTAL','opbrengs totaal','~Euro');
 
 			//timers		
 			$this->RegisterTimer('Interval',10, 'GROWATT_retrieve_growatt_data($id);');
@@ -156,6 +159,11 @@
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_TODAY'),$data['todayValue']);
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_MONTH'),$data['monthValue']);
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_TOTAL'),$data['totalValue']);
+
+			SetValueFloat($this->GetIDForIdent('PROFIT_TODAY'),$data['todayValue']);
+			SetValueFloat($this->GetIDForIdent('PROFIT_MONTH'),$data['monthValue']);
+			SetValueFloat($this->GetIDForIdent('PROFIT_TOTAL'),str_ireplace('€','',$data['totalProfitStr']));
+			
 			$nowpower = (float)str_ireplace('kWh', '', $data['powerValue']);
 			//$todaypower = (float)str_ireplace('kWh', '', $data['todayStr']);
 			$todaypower = (float)str_ireplace('kWh', '', $data['totalStr']);		// 18-04-2020
