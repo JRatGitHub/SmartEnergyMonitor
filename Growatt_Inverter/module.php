@@ -10,7 +10,8 @@
 			$this->RegisterPropertyString ('Username','');
 			$this->RegisterPropertyString ('Password','');
 
-
+			//timers		
+			$this->RegisterTimer('INTERVAL',10, 'GROWATT_retrieve_growatt_data($id)');
 		}
 
 		public function Destroy()
