@@ -10,6 +10,11 @@
 			$this->RegisterPropertyString ('Username','');
 			$this->RegisterPropertyString ('Password','');
 
+			//Variables
+			$PRODUCTION_KWH_TODAY = $this->RegisterVariableFloat('PRODUCTION_KWH_TODAY','Produktie vandaag','P1monitor.ProductionKWH');
+			$PRODUCTION_KWH_TOTAL = $this->RegisterVariableFloat('PRODUCTION_KWH_TOTAL','Productie totaal','P1monitor.ProductionKWH');
+
+
 			//timers		
 			$this->RegisterTimer('Interval',10, 'GROWATT_retrieve_growatt_data($id);');
 		}
@@ -57,10 +62,8 @@
 		  }
 
 		public function retrieve_growatt_data(){
-		//	define('USERNAME', '*****');		// The username or email address of the account.
-		//	define('PASSWORD', '*****');// The Password of the account
 			$pw =  md5($this->ReadPropertyString('Password'));					// No Need to double md5
-								//replace leading 0 by c for Growatt
+			//replace leading 0 by c for Growatt
 			for ($i = 0; $i < strlen($pw); $i=$i+2){
 				if ($pw[$i]=='0')
         		{
@@ -76,47 +79,46 @@
 			define('DOMOTICZDEVICE', '****');																	// 'idx_here' For Watt / Daily Return																												
 			$continue=true;
 
-		$postValues = array(
-			'userName' 	=> $this->ReadPropertyString('Username'),
-		//	'userName'	=> USERNAME,
-			'password'	=> $pw
-		);
-		print_r($postValues);
-		
-		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, LOGIN_ACTION_URL);						// Set the URL that we want to send our POST request to. In this case, it's the action URL of the login form.
-		curl_setopt($curl, CURLOPT_POST, true);									// Tell cURL that we want to carry out a POST request.
-		curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($postValues));	// Set our post fields / date (from the array above). 
-		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);						// We don't want any HTTPS errors.
-		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);						// We don't want any HTTPS errors.
-		curl_setopt($curl, CURLOPT_COOKIEJAR, COOKIE_FILE);						// Where our cookie details are saved. 
-																				// This is typically required for authentication, as the session ID is usually saved in the cookie file.
-		curl_setopt($curl, CURLOPT_HTTPHEADER, HEADER);
-		curl_setopt($curl, CURLOPT_COOKIEFILE, COOKIE_FILE); 
-		curl_setopt($curl, CURLOPT_USERAGENT, USER_AGENT);						// Sets the user agent. Some websites will attempt to block bot user agents. //Hence the reason I gave it a Chrome user agent.
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);						// Tells cURL to return the output once the request has been executed.
-		curl_setopt($curl, CURLOPT_REFERER, LOGIN_FORM_URL);					// Allows us to set the referer header. In this particular case, 
+			$postValues = array(
+				'userName' 	=> $this->ReadPropertyString('Username'),
+				'password'	=> $pw
+			);
+		//print_r($postValues);
+
+			$curl = curl_init();
+			curl_setopt($curl, CURLOPT_URL, LOGIN_ACTION_URL);						// Set the URL that we want to send our POST request to. In this case, it's the action URL of the login form.
+			curl_setopt($curl, CURLOPT_POST, true);									// Tell cURL that we want to carry out a POST request.
+			curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($postValues));	// Set our post fields / date (from the array above). 
+			curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);						// We don't want any HTTPS errors.
+			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);						// We don't want any HTTPS errors.
+			curl_setopt($curl, CURLOPT_COOKIEJAR, COOKIE_FILE);						// Where our cookie details are saved. 
+																					// This is typically required for authentication, as the session ID is usually saved in the cookie file.
+			curl_setopt($curl, CURLOPT_HTTPHEADER, HEADER);
+			curl_setopt($curl, CURLOPT_COOKIEFILE, COOKIE_FILE); 
+			curl_setopt($curl, CURLOPT_USERAGENT, USER_AGENT);						// Sets the user agent. Some websites will attempt to block bot user agents. //Hence the reason I gave it a Chrome user agent.
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);						// Tells cURL to return the output once the request has been executed.
+			curl_setopt($curl, CURLOPT_REFERER, LOGIN_FORM_URL);					// Allows us to set the referer header. In this particular case, 
 																				// we are fooling the server into thinking that we were referred by the login form.
-		curl_setopt ($curl, CURLOPT_SSLVERSION, 1);
-		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);						// Do we want to follow any redirects?
-		$result=curl_exec($curl);												// Execute the login request.
+			curl_setopt ($curl, CURLOPT_SSLVERSION, 1);
+			curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);						// Do we want to follow any redirects?
+			$result=curl_exec($curl);												// Execute the login request.
 
-		if(curl_errno($curl)){
-			switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
- 				case 200:   $continue=true;# OK
- 	    			$this->lg('Growatt inverter: Login: Expected HTTP code: ', $http_code);
-        			break;
-				case 302:   $continue=true;# OK
- 	    			$this->lg('Growatt inverter: Login: Expected HTTP code: ', $http_code);
-        			break;        				
-        		default:    $continue=false;
-        			$this->lg('Growatt inverter: Login: Unexpected HTTP code: ', $http_code);
-			}
-		}
-		curl_close($curl);
+			if(curl_errno($curl)){
+				switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
+ 					case 200:   $continue=true;# OK
+ 	    				$this->lg('Growatt inverter: Login: Expected HTTP code: ', $http_code);
+        				break;
+					case 302:   $continue=true;# OK
+ 	    				$this->lg('Growatt inverter: Login: Expected HTTP code: ', $http_code);
+        				break;        				
+        			default:    $continue=false;
+        				$this->lg('Growatt inverter: Login: Unexpected HTTP code: ', $http_code);
+				}
+			}	
+			curl_close($curl);
 
-		if (file_exists(COOKIE_FILE)) $this->lg ('Cookie File: '.COOKIE_FILE.' exists!'); else $this->lg ('Cookie File: '.COOKIE_FILE.' does NOT exist!');
-		if (is_writable(COOKIE_FILE)) $this->lg ('Cookie File: '.COOKIE_FILE.' is writable!'); else $this->lg ('Cookie File: '.COOKIE_FILE.' NOT writable!');
+			//if (file_exists(COOKIE_FILE)) $this->lg ('Cookie File: '.COOKIE_FILE.' exists!'); else $this->lg ('Cookie File: '.COOKIE_FILE.' does NOT exist!');
+			//if (is_writable(COOKIE_FILE)) $this->lg ('Cookie File: '.COOKIE_FILE.' is writable!'); else $this->lg ('Cookie File: '.COOKIE_FILE.' NOT writable!');
 
 		if ($continue) {
 			$curl = curl_init();
@@ -150,6 +152,8 @@
 		if ($continue) {
 			$data = json_decode($result, JSON_PRETTY_PRINT);
 			print_r($data);
+			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_LOW'),$data['powerValue']);
+
 			$nowpower = (float)str_ireplace('kWh', '', $data['powerValue']);
 			//$todaypower = (float)str_ireplace('kWh', '', $data['todayStr']);
 			$todaypower = (float)str_ireplace('kWh', '', $data['totalStr']);		// 18-04-2020
