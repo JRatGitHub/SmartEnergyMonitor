@@ -84,7 +84,7 @@
 		}
 		curl_close($curl);
 
-	//	if (file_exists(COOKIE_FILE)) lg ('Cookie File: '.COOKIE_FILE.' exists!'); else lg ('Cookie File: '.COOKIE_FILE.' does NOT exist!');
+		if (file_exists(COOKIE_FILE)) lg ('Cookie File: '.COOKIE_FILE.' exists!'); else lg ('Cookie File: '.COOKIE_FILE.' does NOT exist!');
 		if (is_writable(COOKIE_FILE)) lg ('Cookie File: '.COOKIE_FILE.' is writable!'); else lg ('Cookie File: '.COOKIE_FILE.' NOT writable!');
 
 		if ($continue) {
@@ -132,14 +132,11 @@
 
 function lg($msg)   // Can be used to write loglines to separate file or to internal domoticz log. Check settings.php for value.
 {
-	curl(domoticz.'json.htm?type=command&param=addlogmessage&message='.urlencode('--->> '.$msg));		
+//	curl(domoticz.'json.htm?type=command&param=addlogmessage&message='.urlencode('--->> '.$msg));	
+	IPS_LogMessage("Growatt Iverter", $msg);	
 }
 
-function ud($idx,$nvalue,$svalue,$check=false)
-{	
-	curl(domoticz.'json.htm?type=command&param=udevice&idx='.$idx.'&nvalue='.$nvalue.'&svalue='.$svalue);
-	lg(' (udevice) | '.$idx.' => '.$nvalue.','.$svalue);
-}
+
 
 function curl($url){
 	$headers=array('Content-Type: application/json');
@@ -155,4 +152,4 @@ function curl($url){
 	return $data;
 }
 
-	}
+}
