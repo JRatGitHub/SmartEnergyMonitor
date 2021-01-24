@@ -103,19 +103,19 @@
 		if(curl_errno($curl)){
 			switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
  				case 200:   $continue=true;# OK
- 	    			lg('Growatt inverter: Login: Expected HTTP code: ', $http_code);
+ 	    			$this->lg('Growatt inverter: Login: Expected HTTP code: ', $http_code);
         			break;
 				case 302:   $continue=true;# OK
- 	    			lg('Growatt inverter: Login: Expected HTTP code: ', $http_code);
+ 	    			$this->lg('Growatt inverter: Login: Expected HTTP code: ', $http_code);
         			break;        				
         		default:    $continue=false;
-        			lg('Growatt inverter: Login: Unexpected HTTP code: ', $http_code);
+        			$this->lg('Growatt inverter: Login: Unexpected HTTP code: ', $http_code);
 			}
 		}
 		curl_close($curl);
 
-		if (file_exists(COOKIE_FILE)) lg ('Cookie File: '.COOKIE_FILE.' exists!'); else lg ('Cookie File: '.COOKIE_FILE.' does NOT exist!');
-		if (is_writable(COOKIE_FILE)) lg ('Cookie File: '.COOKIE_FILE.' is writable!'); else lg ('Cookie File: '.COOKIE_FILE.' NOT writable!');
+		if (file_exists(COOKIE_FILE)) $this->lg ('Cookie File: '.COOKIE_FILE.' exists!'); else $this->lg ('Cookie File: '.COOKIE_FILE.' does NOT exist!');
+		if (is_writable(COOKIE_FILE)) $this->lg ('Cookie File: '.COOKIE_FILE.' is writable!'); else $this->lg ('Cookie File: '.COOKIE_FILE.' NOT writable!');
 
 		if ($continue) {
 			$curl = curl_init();
@@ -135,13 +135,13 @@
 			if(curl_errno($curl)){
 				switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
  				case 200:   $continue=true;# OK
- 	    			lg('Growatt inverter: Data: Expected HTTP code: ', $http_code);
+ 	    			$this->lg('Growatt inverter: Data: Expected HTTP code: ', $http_code);
         			break;
 				case 302:   $continue=true;# OK
- 	    			lg('Growatt inverter: Data: Expected HTTP code: ', $http_code);
+ 	    			$this->lg('Growatt inverter: Data: Expected HTTP code: ', $http_code);
         			break;        				
         		default:    $continue=false;
-        			lg('Growatt inverter: Data: Unexpected HTTP code: ', $http_code);
+        			$this->lg('Growatt inverter: Data: Unexpected HTTP code: ', $http_code);
 			}
 		}	
 		curl_close($curl);
@@ -153,14 +153,14 @@
 			$todaypower = (float)str_ireplace('kWh', '', $data['totalStr']);		// 18-04-2020
 			
 			$str=( $nowpower.';'. $todaypower * 1000 );	#times 1000 to convert the 0.1kWh to 100 WattHour and to convert 2.1kWh to 2100 WattHour
-			//lg('Growatt Inverter: '. $nowpower.' for domoticz: '.$str);
+			//$this->lg('Growatt Inverter: '. $nowpower.' for domoticz: '.$str);
 			//ud(DOMOTICZDEVICE,0,$str,'GrowattInverter: Generation updated');
 		}
 	}
 }	
 
 
-function lg($msg)   // Can be used to write loglines to separate file or to internal domoticz log. Check settings.php for value.
+protected function $this->lg($msg)   // Can be used to write loglines to separate file or to internal domoticz log. Check settings.php for value.
 {
 //	curl(domoticz.'json.htm?type=command&param=addlogmessage&message='.urlencode('--->> '.$msg));	
 	IPS_LogMessage("Growatt Iverter", $msg);	

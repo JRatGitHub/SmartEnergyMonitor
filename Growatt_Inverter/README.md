@@ -22,7 +22,7 @@ Beschreibung des Moduls.
 ### 3. Software-Installation
 
 * Über den Module Store das 'Growatt_Inverter'-Modul installieren.
-* Alternativ über das Module Control folgende URL hinzufügen
+* Alternativ über das Module Control fo$this->lgende URL hinzufügen
 
 ### 4. Einrichten der Instanzen in IP-Symcon
 
