@@ -13,8 +13,8 @@
 
         { 
             "type": "CheckBox", 
-            "name": "temperaturen", 
-            "caption": "Status emulieren" 
+            "name": "temperatuur", 
+            "caption": "temperatuur" 
         }
         
     ],
