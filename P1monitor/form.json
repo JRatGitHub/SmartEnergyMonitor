@@ -10,6 +10,12 @@
             "name": "IPAddress", 
             "caption": "Host" 
         }
+
+        { 
+            "type": "CheckBox", 
+            "name": "temperaturen", 
+            "caption": "Status emulieren" 
+        }
         
     ],
     "actions": [],
