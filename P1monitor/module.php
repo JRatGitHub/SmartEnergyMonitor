@@ -109,12 +109,12 @@
 			$data = file_get_contents($url); // put the contents of the file into a variable
 			$wizards = json_decode($data, true);
 			
-			$bTemperatuur = $this->RegisterPropertyBoolean('temperatuur');
+			$bTemperatuur = $this->ReadPropertyBoolean('temperatuur');
 			if ($bTemperatuur){
 				SetValueFloat($this->GetIDForIdent('ROOM_TEMPERATURE_IN'),$wizards['0']['3']);
 				SetValueFloat($this->GetIDForIdent('ROOM_TEMPERATURE_OUT'),$wizards['0']['7']);
 			}
-			
+
 			//financial
 			$url = 'http://' .$this->ReadPropertyString('IPAddress') .'/api/v1/financial/day?limit=1';
 			$data = file_get_contents($url);
