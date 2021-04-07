@@ -9,7 +9,7 @@
             "type": "ValidationTextBox", 
             "name": "IPAddress", 
             "caption": "Host" 
-        }
+        },
 
         { 
             "type": "CheckBox", 
