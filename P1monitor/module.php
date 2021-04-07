@@ -101,7 +101,7 @@
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_W'),$wizards['0']['8']);
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_W'),$wizards['0']['9']);
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_GAS_M3'),$wizards['0']['10']);
-			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_LOW'),$wizards['0']['5']);
+			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_LOW'),$wizards['0']['5'] + $wizards['0']['6']);
 			
 
 			//$url = $this->ReadPropertyString('IPAddress');
