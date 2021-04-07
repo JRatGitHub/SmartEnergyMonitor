@@ -8,7 +8,7 @@
 
 			 //Properties
 			 $this->RegisterPropertyString ('IPAddress','192.168.89.134');
-			 $this->RegisterAttributeBoolean('temperatuur',FALSE);
+			 $this->RegisterPropertyBoolean('temperatuur',FALSE);
 			
 			 //Variables
 			 if (!IPS_VariableProfileExists("P1monitor.Watt") || !IPS_VariableProfileExists("P1monitor.ProductionKWH")) $this->UpdateProfil();
