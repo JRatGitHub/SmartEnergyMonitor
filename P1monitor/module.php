@@ -17,11 +17,11 @@
 			 $CONSUMPTION_GAS_M3 = $this->RegisterVariableFloat('CONSUMPTION_GAS_M3','Consumption Gas','~Gas');
 			 
 			 $bTemperatuur = $this->ReadPropertyBoolean('temperatuur');
-			 if ($bTemperatuur){
-			 	$ROOM_TEMPERATURE_IN = $this->RegisterVariableFloat('ROOM_TEMPERATURE_IN','Temperature aanvoer','~Temperature');
-			 	$ROOM_TEMPERATURE_OUT = $this->RegisterVariableFloat('ROOM_TEMPERATURE_OUT','Temperature retour','~Temperature');
-			 }
-			 
+			// if ($bTemperatuur){
+			 //	$ROOM_TEMPERATURE_IN = $this->RegisterVariableFloat('ROOM_TEMPERATURE_IN','Temperature aanvoer','~Temperature');
+			 //	$ROOM_TEMPERATURE_OUT = $this->RegisterVariableFloat('ROOM_TEMPERATURE_OUT','Temperature retour','~Temperature');
+		//	 }
+
 			 $CONSUMPTION_COST_ELECTRICITY = $this->RegisterVariableFloat('CONSUMPTION_COST_ELECTRICITY','Kosten elektriciteit vandaag','~Euro');
 			 $CONSUMPTION_COST_GAS = $this->RegisterVariableFloat('CONSUMPTION_COST_GAS','Kosten gas vandaag','~Euro');
 			 $CONSUMPTION_COST = $this->RegisterVariableFloat('CONSUMPTION_COST','Kosten vandaag','~Euro');
@@ -42,6 +42,9 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
+
+			//Register variable if enabled
+			$this->MaintainVariable('ROOM_TEMPERATURE_IN', 'Temperature aanvoer'), VARIABLETYPE_FLOAT, '~Temperature', 2, $this->ReadPropertyBoolean('temperatuur'));
 
 
 		}
