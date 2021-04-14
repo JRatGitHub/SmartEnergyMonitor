@@ -44,7 +44,7 @@
 			parent::ApplyChanges();
 
 			//Register variable if enabled
-			$this->MaintainVariable('ROOM_TEMPERATURE_IN', 'Temperature aanvoer'), VARIABLETYPE_FLOAT, '~Temperature', 2, $this->ReadPropertyBoolean('temperatuur'));
+			$this->MaintainVariable('ROOM_TEMPERATURE_IN', 'Temperature aanvoer'),2 , '~Temperature', 2, $this->ReadPropertyBoolean('temperatuur'));
 
 
 		}
