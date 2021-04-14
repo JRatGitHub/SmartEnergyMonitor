@@ -13,6 +13,11 @@
 
         { 
             "type": "CheckBox", 
+            "name": "terugleveren", 
+            "caption": "terug leveren" 
+        },
+        { 
+            "type": "CheckBox", 
             "name": "temperatuur", 
             "caption": "temperatuur" 
         }

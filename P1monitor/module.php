@@ -8,6 +8,7 @@
 
 			 //Properties
 			 $this->RegisterPropertyString ('IPAddress','192.168.89.134');
+			 $this->RegisterPropertyBoolean('terugleveren',TRUE);
 			 $this->RegisterPropertyBoolean('temperatuur',FALSE);
 			
 			 //Variables
@@ -16,12 +17,6 @@
 			 $PRODUCTION_W = $this->RegisterVariableFloat('PRODUCTION_W','Production','P1monitor.Watt');
 			 $CONSUMPTION_GAS_M3 = $this->RegisterVariableFloat('CONSUMPTION_GAS_M3','Consumption Gas','~Gas');
 			 
-			// $bTemperatuur = $this->ReadPropertyBoolean('temperatuur');
-			// if ($bTemperatuur){
-			 //	$ROOM_TEMPERATURE_IN = $this->RegisterVariableFloat('ROOM_TEMPERATURE_IN','Temperature aanvoer','~Temperature');
-			 //	$ROOM_TEMPERATURE_OUT = $this->RegisterVariableFloat('ROOM_TEMPERATURE_OUT','Temperature retour','~Temperature');
-		//	 }
-
 			 $CONSUMPTION_COST_ELECTRICITY = $this->RegisterVariableFloat('CONSUMPTION_COST_ELECTRICITY','Kosten elektriciteit vandaag','~Euro');
 			 $CONSUMPTION_COST_GAS = $this->RegisterVariableFloat('CONSUMPTION_COST_GAS','Kosten gas vandaag','~Euro');
 			 $CONSUMPTION_COST = $this->RegisterVariableFloat('CONSUMPTION_COST','Kosten vandaag','~Euro');
