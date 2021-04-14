@@ -16,7 +16,7 @@
 			 $PRODUCTION_W = $this->RegisterVariableFloat('PRODUCTION_W','Production','P1monitor.Watt');
 			 $CONSUMPTION_GAS_M3 = $this->RegisterVariableFloat('CONSUMPTION_GAS_M3','Consumption Gas','~Gas');
 			 
-			 $bTemperatuur = $this->ReadPropertyBoolean('temperatuur');
+			// $bTemperatuur = $this->ReadPropertyBoolean('temperatuur');
 			// if ($bTemperatuur){
 			 //	$ROOM_TEMPERATURE_IN = $this->RegisterVariableFloat('ROOM_TEMPERATURE_IN','Temperature aanvoer','~Temperature');
 			 //	$ROOM_TEMPERATURE_OUT = $this->RegisterVariableFloat('ROOM_TEMPERATURE_OUT','Temperature retour','~Temperature');
@@ -44,7 +44,7 @@
 			parent::ApplyChanges();
 
 			//Register variable if enabled
-		//	$this->MaintainVariable('ROOM_TEMPERATURE_IN', 'Temperature aanvoer'),2 , '~Temperature', 2, $this->ReadPropertyBoolean('temperatuur'));
+			$this->MaintainVariable('ROOM_TEMPERATURE_IN', 'Temperature aanvoer'),2 , '~Temperature', 2, $this->ReadPropertyBoolean('temperatuur'));
 
 
 		}
