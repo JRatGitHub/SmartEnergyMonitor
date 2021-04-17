@@ -9,6 +9,7 @@
 			 //Properties
 			 $this->RegisterPropertyString ('IPAddress','192.168.89.134');
 			 $this->RegisterPropertyBoolean('terugleveren',TRUE);
+			 $this->RegisterPropertyBoolean('Production',FALSE);
 			 $this->RegisterPropertyBoolean('temperatuur',FALSE);
 			
 			 //Variables
