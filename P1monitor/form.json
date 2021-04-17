@@ -18,6 +18,11 @@
         },
         { 
             "type": "CheckBox", 
+            "name": "Production", 
+            "caption": "Production" 
+        },
+        { 
+            "type": "CheckBox", 
             "name": "temperatuur", 
             "caption": "temperatuur" 
         }
