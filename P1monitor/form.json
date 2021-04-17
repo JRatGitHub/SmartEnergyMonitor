@@ -16,6 +16,10 @@
             "name": "terugleveren", 
             "caption": "terug leveren" 
         },
+        {   
+            "type": "Label",
+            "label": "opgewekte kWh" 
+        },
         { 
             "type": "CheckBox", 
             "name": "Production", 
