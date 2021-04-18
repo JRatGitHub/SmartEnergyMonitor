@@ -23,6 +23,7 @@
 			 $CONSUMPTION_COST = $this->RegisterVariableFloat('CONSUMPTION_COST','Kosten vandaag','~Euro');
 			
 			 $PRODUCTION_KWH_LOW = $this->RegisterVariableFloat('PRODUCTION_KWH_LOW','Teruggeleverd','P1monitor.ProductionKWH');
+			 $PRODUCTION_DELTA_KWH = $this->RegisterVariableFloat('PRODUCTION_DELTA_KWH','Teruggeleverd vandaag','P1monitor.ProductionKWH');
 
 			 $this->RegisterTimer('INTERVAL',10, 'MON_GetData($id)');
 			}
@@ -106,8 +107,8 @@
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_W'),$wizards['0']['9']);
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_GAS_M3'),$wizards['0']['10']);
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_LOW'),$wizards['0']['5'] + $wizards['0']['6']);
-			
 
+			
 			//$url = $this->ReadPropertyString('IPAddress');
 			$url = 'http://' .$this->ReadPropertyString('IPAddress') .'/api/v1/indoor/temperature?limit=1';
 			$data = file_get_contents($url); // put the contents of the file into a variable
@@ -128,6 +129,11 @@
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST'),$wizards['0']['2'] + $wizards['0']['3'] + $wizards['0']['6']);
 		
 			//Production
+			$url = 'http://' .$this->ReadPropertyString('IPAddress') .'api/v1/powergas/day?limit=1';
+			$data = file_get_contents($url);
+			$wizards = json_decode($data, true);
+			SetValueFloat($this->GetIDForIdent('PRODUCTION_DELTA_KWH'),$wizards['0']['7']);
+			
 		}
 
 	}
