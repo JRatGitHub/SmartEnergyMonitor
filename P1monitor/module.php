@@ -129,7 +129,7 @@
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST'),$wizards['0']['2'] + $wizards['0']['3'] + $wizards['0']['6']);
 		
 			//Production
-			$url = 'http://' .$this->ReadPropertyString('IPAddress') .'api/v1/powergas/day?limit=1';
+			$url = 'http://' .$this->ReadPropertyString('IPAddress') .'/api/v1/powergas/day?limit=1';
 			$data = file_get_contents($url);
 			$wizards = json_decode($data, true);
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_DELTA_KWH'),$wizards['0']['7']);
