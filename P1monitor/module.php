@@ -111,13 +111,14 @@
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_LOW'),$wizards['0']['5'] + $wizards['0']['6']);
 
 			
-			//$url = $this->ReadPropertyString('IPAddress');
-			$url = 'http://' .$this->ReadPropertyString('IPAddress') .'/api/v1/indoor/temperature?limit=1';
-			$data = file_get_contents($url); // put the contents of the file into a variable
-			$wizards = json_decode($data, true);
 			
-			$bTemperatuur = $this->ReadPropertyBoolean('temperatuur');
-			if ($bTemperatuur){
+			if ($this->ReadPropertyBoolean('temperatuur')){
+				$url = 'http://' .$this->ReadPropertyString('IPAddress') .'/api/v1/indoor/temperature?limit=1';
+				$data = file_get_contents($url); // put the contents of the file into a variable
+				$wizards = json_decode($data, true);
+			
+			//$bTemperatuur = $this->ReadPropertyBoolean('temperatuur');
+			
 				SetValueFloat($this->GetIDForIdent('ROOM_TEMPERATURE_IN'),$wizards['0']['3']);
 				SetValueFloat($this->GetIDForIdent('ROOM_TEMPERATURE_OUT'),$wizards['0']['7']);
 			}
