@@ -21,6 +21,8 @@
 			 $CONSUMPTION_COST_ELECTRICITY = $this->RegisterVariableFloat('CONSUMPTION_COST_ELECTRICITY','Kosten elektriciteit vandaag','~Euro');
 			 $CONSUMPTION_COST_GAS = $this->RegisterVariableFloat('CONSUMPTION_COST_GAS','Kosten gas vandaag','~Euro');
 			 $CONSUMPTION_COST = $this->RegisterVariableFloat('CONSUMPTION_COST','Kosten vandaag','~Euro');
+			 $PRODUCTION_REVENUES_ELECTRICITY = $this->RegisterVariableFloat('PRODUCTION_REVENUES_ELECTRICITY','opbrengst elektriciteit vandaag','~Euro');
+
 			
 			 $PRODUCTION_KWH_LOW = $this->RegisterVariableFloat('PRODUCTION_KWH_LOW','Teruggeleverd','P1monitor.ProductionKWH');
 			 $PRODUCTION_DELTA_KWH = $this->RegisterVariableFloat('PRODUCTION_DELTA_KWH','Teruggeleverd vandaag','P1monitor.ProductionKWH');
@@ -127,6 +129,9 @@
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST_ELECTRICITY'),$wizards['0']['2'] + $wizards['0']['3'] );
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST_GAS'),$wizards['0']['6']);
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST'),$wizards['0']['2'] + $wizards['0']['3'] + $wizards['0']['6']);
+			SetValueFloat($this->GetIDForIdent('PRODUCTION_REVENUES_ELECTRICITY'),$wizards['0']['5'] 
+			//+ $wizards['0']['3'] + $wizards['0']['6']);
+
 		
 			//Production
 			$url = 'http://' .$this->ReadPropertyString('IPAddress') .'/api/v1/powergas/day?limit=1';
