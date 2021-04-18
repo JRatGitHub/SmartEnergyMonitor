@@ -129,7 +129,7 @@
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST_ELECTRICITY'),$wizards['0']['2'] + $wizards['0']['3'] );
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST_GAS'),$wizards['0']['6']);
 			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST'),$wizards['0']['2'] + $wizards['0']['3'] + $wizards['0']['6']);
-			SetValueFloat($this->GetIDForIdent('PRODUCTION_REVENUES_ELECTRICITY'),$wizards['0']['5'] 
+			SetValueFloat($this->GetIDForIdent('PRODUCTION_REVENUES_ELECTRICITY'),$wizards['0']['5'];
 			//+ $wizards['0']['3'] + $wizards['0']['6']);
 
 		
