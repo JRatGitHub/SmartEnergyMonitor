@@ -102,7 +102,7 @@
 		{
 			$url = $this->ReadPropertyString('IPAddress');
 			// ping if ip is alive
-			if(Ping($url, 1000)) {
+			if(Sys_Ping($url, 1000)) {
 				$url = 'http://' .$url .'/api/v1/smartmeter?limit=1';
 		//		print($url);
 				$data = file_get_contents($url); // put the contents of the file into a variable
