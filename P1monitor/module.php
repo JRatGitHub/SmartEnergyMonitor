@@ -101,45 +101,45 @@
 		public function GetData()
 		{
 			$url = $this->ReadPropertyString('IPAddress');
-			$url = 'http://' .$url .'/api/v1/smartmeter?limit=1';
-		//	print($url);
-			$data = file_get_contents($url); // put the contents of the file into a variable
-			$wizards = json_decode($data, true);
-			SetValueFloat($this->GetIDForIdent('CONSUMPTION_W'),$wizards['0']['8']);
-			SetValueFloat($this->GetIDForIdent('PRODUCTION_W'),$wizards['0']['9']);
-			SetValueFloat($this->GetIDForIdent('CONSUMPTION_GAS_M3'),$wizards['0']['10']);
-			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_LOW'),$wizards['0']['5'] + $wizards['0']['6']);
-
-			
-			
-			if ($this->ReadPropertyBoolean('temperatuur')){
-				$url = 'http://' .$this->ReadPropertyString('IPAddress') .'/api/v1/indoor/temperature?limit=1';
+			// ping if ip is alive
+			if(Ping($url, 1000)) {
+				$url = 'http://' .$url .'/api/v1/smartmeter?limit=1';
+		//		print($url);
 				$data = file_get_contents($url); // put the contents of the file into a variable
 				$wizards = json_decode($data, true);
+				SetValueFloat($this->GetIDForIdent('CONSUMPTION_W'),$wizards['0']['8']);
+				SetValueFloat($this->GetIDForIdent('PRODUCTION_W'),$wizards['0']['9']);
+				SetValueFloat($this->GetIDForIdent('CONSUMPTION_GAS_M3'),$wizards['0']['10']);
+				SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_LOW'),$wizards['0']['5'] + $wizards['0']['6']);
 			
-			//$bTemperatuur = $this->ReadPropertyBoolean('temperatuur');
+				if ($this->ReadPropertyBoolean('temperatuur')){
+					$url = 'http://' .$this->ReadPropertyString('IPAddress') .'/api/v1/indoor/temperature?limit=1';
+					$data = file_get_contents($url); // put the contents of the file into a variable
+					$wizards = json_decode($data, true);
 			
-				SetValueFloat($this->GetIDForIdent('ROOM_TEMPERATURE_IN'),$wizards['0']['3']);
-				SetValueFloat($this->GetIDForIdent('ROOM_TEMPERATURE_OUT'),$wizards['0']['7']);
-			}
+					//$bTemperatuur = $this->ReadPropertyBoolean('temperatuur');
+			
+					SetValueFloat($this->GetIDForIdent('ROOM_TEMPERATURE_IN'),$wizards['0']['3']);
+					SetValueFloat($this->GetIDForIdent('ROOM_TEMPERATURE_OUT'),$wizards['0']['7']);
+				}
 
-			//financial
-			$url = 'http://' .$this->ReadPropertyString('IPAddress') .'/api/v1/financial/day?limit=1';
-			$data = file_get_contents($url);
-			$wizards = json_decode($data, true);
-			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST_ELECTRICITY'),$wizards['0']['2'] + $wizards['0']['3'] );
-			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST_GAS'),$wizards['0']['6']);
-			SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST'),$wizards['0']['2'] + $wizards['0']['3'] + $wizards['0']['6']);
-			SetValueFloat($this->GetIDForIdent('PRODUCTION_REVENUES_ELECTRICITY'),$wizards['0']['5']);
-			//+ $wizards['0']['3'] + $wizards['0']['6']);
+				//financial
+				$url = 'http://' .$this->ReadPropertyString('IPAddress') .'/api/v1/financial/day?limit=1';
+				$data = file_get_contents($url);
+				$wizards = json_decode($data, true);
+				SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST_ELECTRICITY'),$wizards['0']['2'] + $wizards['0']['3'] );
+				SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST_GAS'),$wizards['0']['6']);
+				SetValueFloat($this->GetIDForIdent('CONSUMPTION_COST'),$wizards['0']['2'] + $wizards['0']['3'] + $wizards['0']['6']);
+				SetValueFloat($this->GetIDForIdent('PRODUCTION_REVENUES_ELECTRICITY'),$wizards['0']['5']);
+				//+ $wizards['0']['3'] + $wizards['0']['6']);
 
 		
-			//Production
-			$url = 'http://' .$this->ReadPropertyString('IPAddress') .'/api/v1/powergas/day?limit=1';
-			$data = file_get_contents($url);
-			$wizards = json_decode($data, true);
-			SetValueFloat($this->GetIDForIdent('PRODUCTION_DELTA_KWH'),$wizards['0']['7']);
-			
+				//Production
+				$url = 'http://' .$this->ReadPropertyString('IPAddress') .'/api/v1/powergas/day?limit=1';
+				$data = file_get_contents($url);
+				$wizards = json_decode($data, true);
+				SetValueFloat($this->GetIDForIdent('PRODUCTION_DELTA_KWH'),$wizards['0']['7']);
+			}	
 		}
 
 	}
