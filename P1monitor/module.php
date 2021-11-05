@@ -46,7 +46,7 @@
 			$this->MaintainVariable('ROOM_TEMPERATURE_IN', 'Temperature aanvoer',2 , '~Temperature', 0, $this->ReadPropertyBoolean('temperatuur'));
 			$this->MaintainVariable('ROOM_TEMPERATURE_OUT', 'Temperature retour',2 , '~Temperature', 0, $this->ReadPropertyBoolean('temperatuur'));
 
-			$this->MaintainVariable('ROOM_TEMPERATURE_OUT', 'KWH meter',2 , 'P1monitor.ProductionKWH', 0, $this->ReadPropertyBoolean('Production'));
+			//$this->MaintainVariable('ROOM_TEMPERATURE_OUT', 'KWH meter',2 , 'P1monitor.ProductionKWH', 0, $this->ReadPropertyBoolean('Production'));
 
 		}
 
