@@ -105,7 +105,7 @@
 			if(Sys_Ping($url, 1000)) {
 				$url = 'http://' .$url .'/api/v1/smartmeter?limit=1';
 		//		print($url);
-				$data = file_get_contents($url); // put the contents of the file into a variable
+				$data = file_get_contents($url); // put the content of the file into a variable
 				$wizards = json_decode($data, true);
 				SetValueFloat($this->GetIDForIdent('CONSUMPTION_W'),$wizards['0']['8']);
 				SetValueFloat($this->GetIDForIdent('PRODUCTION_W'),$wizards['0']['9']);
