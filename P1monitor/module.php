@@ -17,6 +17,7 @@
 			 $CONSUMPTION_W = $this->RegisterVariableFloat('CONSUMPTION_W','Consumption','P1monitor.Watt');
 			 $PRODUCTION_W = $this->RegisterVariableFloat('PRODUCTION_W','Production','P1monitor.Watt');
 			 $CONSUMPTION_GAS_M3 = $this->RegisterVariableFloat('CONSUMPTION_GAS_M3','Consumption Gas','~Gas');
+			 $CONSUMPTION_GAS_DELTA_M3=$this->RegisterVariableFloat('CONSUMPTION_GAS_DELTA_M3','Consumption vandaag Gas','~Gas');
 			 
 			 $CONSUMPTION_COST_ELECTRICITY = $this->RegisterVariableFloat('CONSUMPTION_COST_ELECTRICITY','Kosten elektriciteit vandaag','~Euro');
 			 $CONSUMPTION_COST_GAS = $this->RegisterVariableFloat('CONSUMPTION_COST_GAS','Kosten gas vandaag','~Euro');
@@ -26,6 +27,8 @@
 			
 			 $PRODUCTION_KWH_LOW = $this->RegisterVariableFloat('PRODUCTION_KWH_LOW','Teruggeleverd','P1monitor.ProductionKWH');
 			 $PRODUCTION_DELTA_KWH = $this->RegisterVariableFloat('PRODUCTION_DELTA_KWH','Teruggeleverd vandaag','P1monitor.ProductionKWH');
+
+			
 
 			 $this->RegisterTimer('INTERVAL',10, 'MON_GetData($id)');
 			}
@@ -139,6 +142,7 @@
 				$data = file_get_contents($url);
 				$wizards = json_decode($data, true);
 				SetValueFloat($this->GetIDForIdent('PRODUCTION_DELTA_KWH'),$wizards['0']['7']);
+				SetValueFloat($this->GetIDForIdent('CONSUMPTION_GAS_DELTA_M3'),$wizards['0']['9']);
 			}	
 		}
 
