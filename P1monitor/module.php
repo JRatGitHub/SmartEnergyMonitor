@@ -145,8 +145,8 @@
 				$wizards = json_decode($data, true);
 				SetValueFloat($this->GetIDForIdent('PRODUCTION_DELTA_KWH'),$wizards['0']['7']);
 				SetValueFloat($this->GetIDForIdent('CONSUMPTION_GAS_DELTA_M3'),$wizards['0']['9']);
-				SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_LOW'),$wizards['0']['2']);
-				SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_HIGH'),$wizards['0']['3']);
+				SetValueFloat($this->GetIDForIdent('CONSUMPTION_KWH_LOW'),$wizards['0']['2']);
+				SetValueFloat($this->GetIDForIdent('CONSUMPTION_KWH_HIGH'),$wizards['0']['3']);
 
 			}	
 		}
