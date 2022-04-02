@@ -20,7 +20,7 @@
 			 $CONSUMPTION_GAS_DELTA_M3=$this->RegisterVariableFloat('CONSUMPTION_GAS_DELTA_M3','Consumption vandaag Gas','~Gas');
 			 $CONSUMPTION_KWH_LOW = $this->RegisterVariableFloat('CONSUMPTION_KWH_LOW','Consumption Low','P1monitor.ProductionKWH');
 			 $CONSUMPTION_KWH_HIGH = $this->RegisterVariableFloat('CONSUMPTION_KWH_HIGH','Consumption High','P1monitor.ProductionKWH');
-			 $CONSUMPTION_DELTA_KWH = $this->RegisterVariableFloat('CONSUMPTION_DELTA_KWH','Consumption High','P1monitor.ProductionKWH');
+			 $CONSUMPTION_DELTA_KWH = $this->RegisterVariableFloat('CONSUMPTION_DELTA_KWH','Consumption vandaag','P1monitor.ProductionKWH');
 
 			 $CONSUMPTION_COST_ELECTRICITY = $this->RegisterVariableFloat('CONSUMPTION_COST_ELECTRICITY','Kosten elektriciteit vandaag','~Euro');
 			 $CONSUMPTION_COST_GAS = $this->RegisterVariableFloat('CONSUMPTION_COST_GAS','Kosten gas vandaag','~Euro');
