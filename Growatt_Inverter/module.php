@@ -80,8 +80,8 @@
 			define('USER_AGENT', 'Dalvik/2.1.0 (Linux; U; Android 9; ONEPLUS A6003 Build/PKQ1.180716.001)');	// Set a user agent. 
 			define('COOKIE_FILE','/home/pi/symcon/scripts/pass2php/growatt.cookie');							// Where our cookie information will be stored (need to be writable!)
 			define('HEADER',array('Content-Type: application/x-www-form-urlencoded;charset=UTF-8'));
-			define('LOGIN_FORM_URL', 'http://server-api.growatt.com/newLoginAPI.do');							// URL of the login form.
-			define('LOGIN_ACTION_URL', 'http://server-api.growatt.com/newLoginAPI.do');							// Login action URL. Sometimes, this is the same URL as the login form.
+			define('LOGIN_FORM_URL', 'http://server-api.growatt.com/newTwoLoginAPI.do');							// URL of the login form.
+			define('LOGIN_ACTION_URL', 'http://server-api.growatt.com/newTwoLoginAPI.do');							// Login action URL. Sometimes, this is the same URL as the login form.
 			define('DOMOTICZDEVICE', '****');																	// 'idx_here' For Watt / Daily Return																												
 			$continue=true;
 
@@ -124,8 +124,8 @@
 			}	
 			curl_close($curl);
 
-			if (file_exists(COOKIE_FILE)) $this->lg ('Cookie File: '.COOKIE_FILE.' exists!'); else $this->lg ('Cookie File: '.COOKIE_FILE.' does NOT exist!');
-			if (is_writable(COOKIE_FILE)) $this->lg ('Cookie File: '.COOKIE_FILE.' is writable!'); else $this->lg ('Cookie File: '.COOKIE_FILE.' NOT writable!');
+			//if (file_exists(COOKIE_FILE)) $this->lg ('Cookie File: '.COOKIE_FILE.' exists!'); else $this->lg ('Cookie File: '.COOKIE_FILE.' does NOT exist!');
+			//if (is_writable(COOKIE_FILE)) $this->lg ('Cookie File: '.COOKIE_FILE.' is writable!'); else $this->lg ('Cookie File: '.COOKIE_FILE.' NOT writable!');
 
 		if ($continue) {
 			$curl = curl_init();
