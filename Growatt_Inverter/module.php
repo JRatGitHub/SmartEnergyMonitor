@@ -107,6 +107,7 @@
 																				// we are fooling the server into thinking that we were referred by the login form.
 			curl_setopt ($curl, CURLOPT_SSLVERSION, 1);
 			curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);						// Do we want to follow any redirects?
+
 			$result=curl_exec($curl);												// Execute the login request.
 
 			if(curl_errno($curl)){
@@ -123,8 +124,8 @@
 			}	
 			curl_close($curl);
 
-			//if (file_exists(COOKIE_FILE)) $this->lg ('Cookie File: '.COOKIE_FILE.' exists!'); else $this->lg ('Cookie File: '.COOKIE_FILE.' does NOT exist!');
-			//if (is_writable(COOKIE_FILE)) $this->lg ('Cookie File: '.COOKIE_FILE.' is writable!'); else $this->lg ('Cookie File: '.COOKIE_FILE.' NOT writable!');
+			if (file_exists(COOKIE_FILE)) $this->lg ('Cookie File: '.COOKIE_FILE.' exists!'); else $this->lg ('Cookie File: '.COOKIE_FILE.' does NOT exist!');
+			if (is_writable(COOKIE_FILE)) $this->lg ('Cookie File: '.COOKIE_FILE.' is writable!'); else $this->lg ('Cookie File: '.COOKIE_FILE.' NOT writable!');
 
 		if ($continue) {
 			$curl = curl_init();
