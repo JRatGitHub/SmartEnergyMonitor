@@ -89,7 +89,7 @@
 				'userName' 	=> $this->ReadPropertyString('Username'),
 				'password'	=> $pw
 			);
-		print_r($postValues);
+		//print_r($postValues);
 
 			$curl = curl_init();
 			curl_setopt($curl, CURLOPT_URL, LOGIN_ACTION_URL);						// Set the URL that we want to send our POST request to. In this case, it's the action URL of the login form.
@@ -158,7 +158,7 @@
 		
 		if ($continue) {
 			$data = json_decode($result, JSON_PRETTY_PRINT);
-			print_r($data);
+			//print_r($data);
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_TODAY'),$data['todayValue']);
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_MONTH'),$data['monthValue']);
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_YEAR'),$data['yearValue']);
