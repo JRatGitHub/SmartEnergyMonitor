@@ -28,12 +28,12 @@
         { 
             "type": "CheckBox", 
             "name": "temperatuur", 
-            "caption": "temperatuur" 
+            "caption": "Temperatuur" 
         },
         { 
             "type": "CheckBox", 
             "name": "KWhpulse", 
-            "caption": "KWhPulse" 
+            "caption": "KWh Pulse" 
         }
         
     ],
