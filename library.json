@@ -3,9 +3,6 @@
     "name": "Smart Energy Monitor",
     "author": "J.R. de Wit",
     "url": "",
-    "compatibility": {
-        "version": "5.4"
-    },
     "version": "1.1",
     "build": 0,
     "date": 0
