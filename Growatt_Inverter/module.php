@@ -158,7 +158,8 @@
 		
 		if ($continue) {
 			$data = json_decode($result, JSON_PRETTY_PRINT);
-			print_r($data);
+			IPS_LogMessage("Growatt Inverter", $data);
+			//print_r($data);
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_TODAY'),$data['todayValue']);
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_MONTH'),$data['monthValue']);
 			SetValueFloat($this->GetIDForIdent('PRODUCTION_KWH_YEAR'),$data['yearValue']);
