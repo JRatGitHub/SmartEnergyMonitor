@@ -11,7 +11,7 @@
 			 $this->RegisterPropertyBoolean('terugleveren',TRUE);
 			 $this->RegisterPropertyBoolean('Production',FALSE);
 			 $this->RegisterPropertyBoolean('temperatuur',FALSE);
-			 $this->RegisterPropertyBoolean('temperatuur',FALSE);
+			 $this->RegisterPropertyBoolean('3phase',FALSE);
 			
 			 //Variables
 			 if (!IPS_VariableProfileExists("P1monitor.Watt") || !IPS_VariableProfileExists("P1monitor.ProductionKWH")) $this->UpdateProfil();
