@@ -10,7 +10,11 @@
             "name": "IPAddress", 
             "caption": "Host" 
         },
-
+        { 
+            "type": "CheckBox", 
+            "name": "3Phase", 
+            "caption": "3Phase" 
+        },
         { 
             "type": "CheckBox", 
             "name": "terugleveren", 
@@ -35,6 +39,7 @@
             "name": "KWhpulse", 
             "caption": "KWh Pulse" 
         }
+
         
     ],
     "actions": [],
